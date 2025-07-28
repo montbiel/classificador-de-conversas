@@ -37,84 +37,60 @@ CHAT_HISTORY_USER_ID_COLUMN = 'customer_id'  # Coluna real no banco
 CHAT_HISTORY_TIMESTAMP_COLUMN = 'message_date'  # Coluna real no banco
 CHAT_HISTORY_MESSAGE_COLUMN = 'message'  # Coluna real no banco
 
-# Tags de Classificação Específicas
+# Tags de Classificação Organizadas (sem redundâncias)
 CLASSIFICATION_TAGS = [
-    # Problemas Financeiros Específicos (unificados e organizados)
-    "Problemas financeiros: sem dinheiro",  # ausência total de dinheiro
-    "Problemas financeiros: dificuldade financeira",  # dificuldades financeiras em geral
-    "Problemas financeiros: não pode pagar agora",  # impossibilidade momentânea
-    "Problemas financeiros: problemas com parcelamento",  # dificuldade em parcelar
-    "Problemas financeiros: outros",  # casos financeiros não previstos acima
-    
-    # Dúvidas Específicas
-    "Dúvidas sobre meio de pagamento",
-    "Dúvidas sobre boleto",
-    "Dúvidas sobre cartão de crédito",
-    "Dúvidas sobre PIX",
-    "Dúvidas sobre parcelamento",
+    # Dúvidas (consolidadas)
+    "Dúvidas sobre meio de pagamento",  # inclui boleto, PIX, cartão, parcelamento
     "Dúvidas sobre preço/valor",
     "Dúvidas sobre desconto",
-    "Dúvidas sobre reembolso",
-    "Dúvidas sobre cancelamento",
-    "Dúvidas sobre matrícula",
-    "Dúvidas sobre acesso ao curso",
+    "Dúvidas sobre curso",  # inclui acesso, conteúdo, duração, horários
     "Dúvidas sobre certificado",
-    "Dúvidas sobre conteúdo do curso",
-    "Dúvidas sobre duração do curso",
-    "Dúvidas sobre horários",
+    "Dúvidas sobre matrícula",
+    "Dúvidas sobre cancelamento/reembolso",
     "Dúvidas sobre suporte técnico",
     
-    # Problemas com Plataforma
+    # Problemas Financeiros (consolidadas)
+    "Problemas financeiros: sem dinheiro",
+    "Problemas financeiros: dificuldade financeira",
+    "Problemas financeiros: não pode pagar agora",
+    "Problemas financeiros: problemas com parcelamento",
+    "Problemas financeiros: outros",
+    
+    # Problemas Técnicos (consolidadas)
     "Problema: site não abre",
     "Problema: link não funciona",
-    "Problema: não conseguiu emitir boleto",
-    "Problema: erro no pagamento",
+    "Problema: erro no pagamento",  # inclui emissão de boleto
     "Problema: erro no cadastro",
     "Problema: erro no login",
     "Problema: erro no acesso ao curso",
-    "Problema: vídeo não carrega",
-    "Problema: material não baixa",
-    "Problema: certificado não gera",
+    "Problema: conteúdo não carrega",  # inclui vídeo, material, certificado
     "Problema: área do aluno não funciona",
     "Problema: app não funciona",
     "Problema: sistema lento",
     "Problema: página travou",
     
-    # Insatisfação Específica
-    "Não gostou: conteúdo do curso",
-    "Não gostou: metodologia",
-    "Não gostou: professor",
-    "Não gostou: material didático",
-    "Não gostou: plataforma",
-    "Não gostou: atendimento",
-    "Não gostou: qualidade do curso",
-    "Não gostou: duração do curso",
-    "Não gostou: preço do curso",
+    # Insatisfação (consolidadas)
+    "Não gostou: conteúdo/metodologia",  # inclui conteúdo, metodologia, professor, material
+    "Não gostou: plataforma/atendimento",  # inclui plataforma, atendimento, qualidade
+    "Não gostou: preço/duração",  # inclui preço, duração
     
-    # Insegurança Específica
-    "Insegurança: não se sente preparado",
-    "Insegurança: medo de errar",
-    "Insegurança: falta de experiência",
-    "Insegurança: não confia na empresa",
-    "Insegurança: medo de ser enganado",
-    "Insegurança: dúvidas sobre qualidade",
-    "Insegurança: não sabe se vale a pena",
+    # Insegurança (consolidadas)
+    "Insegurança: não se sente preparado",  # inclui falta de experiência
+    "Insegurança: medo/desconfiança",  # inclui medo de errar, não confia na empresa, medo de ser enganado
+    "Insegurança: dúvidas sobre qualidade/valor",  # inclui dúvidas sobre qualidade, não sabe se vale a pena
     
-    # Atendimento
-    "Atendimento: não respondeu dúvida",
-    "Atendimento: demorou para responder",
-    "Atendimento: resposta insatisfatória",
-    "Atendimento: não foi atendido",
-    "Atendimento: transferiu várias vezes",
-    "Atendimento: não resolveu problema",
+    # Atendimento (consolidadas)
+    "Atendimento: não respondeu/demorou",  # inclui não respondeu, demorou para responder
+    "Atendimento: resposta insatisfatória",  # inclui resposta ruim, não resolveu problema
+    "Atendimento: não foi atendido",  # inclui transferiu várias vezes
     
     # Outros
     "Outros"
 ]
 
-# Palavras-chave específicas para cada tag (problemas financeiros unificados)
+# Palavras-chave para cada tag (consolidadas)
 TAG_KEYWORDS = {
-    # Problemas Financeiros Específicos
+    # Problemas Financeiros
     "Problemas financeiros: sem dinheiro": [
         "sem dinheiro", "não tenho dinheiro", "sem grana", "não tenho grana", "sem dinheiro para",
         "não tenho dinheiro para", "sem dinheiro para pagar", "não tenho dinheiro para pagar"
@@ -134,22 +110,12 @@ TAG_KEYWORDS = {
         "problema financeiro", "questão financeira", "dificuldade de pagamento", "outro motivo financeiro"
     ],
     
-    # Dúvidas Específicas
+    # Dúvidas (consolidadas)
     "Dúvidas sobre meio de pagamento": [
         "meio de pagamento", "formas de pagamento", "como pagar", "como fazer o pagamento",
-        "opções de pagamento", "métodos de pagamento", "qual forma de pagar"
-    ],
-    "Dúvidas sobre boleto": [
-        "boleto", "como gerar boleto", "onde está o boleto", "boleto não chegou", "boleto não foi enviado",
-        "link do boleto", "boleto bancário", "como pagar o boleto"
-    ],
-    "Dúvidas sobre cartão de crédito": [
-        "cartão de crédito", "cartão", "parcelamento", "parcelas", "quantas parcelas",
-        "limite do cartão", "cartão não passou", "erro no cartão"
-    ],
-    "Dúvidas sobre PIX": [
-        "pix", "pix não funcionou", "como fazer pix", "chave pix", "qr code pix",
-        "pix não foi confirmado", "pix não chegou"
+        "opções de pagamento", "métodos de pagamento", "qual forma de pagar", "boleto", "pix", 
+        "cartão de crédito", "cartão", "parcelamento", "parcelas", "como gerar boleto", 
+        "onde está o boleto", "link do boleto", "como fazer pix", "chave pix", "qr code pix"
     ],
     "Dúvidas sobre preço/valor": [
         "quanto custa", "qual o valor", "qual o preço", "valor do curso", "preço do curso",
@@ -159,8 +125,25 @@ TAG_KEYWORDS = {
         "desconto", "promoção", "oferta", "código de desconto", "cupom", "desconto especial",
         "preço promocional", "oferta especial"
     ],
+    "Dúvidas sobre curso": [
+        "acesso ao curso", "conteúdo do curso", "duração do curso", "horários", "como acessar o curso",
+        "o que tem no curso", "quanto tempo dura", "quando são as aulas", "material do curso"
+    ],
+    "Dúvidas sobre certificado": [
+        "certificado", "como gerar certificado", "onde está o certificado", "certificado não gera",
+        "link do certificado", "certificado de conclusão"
+    ],
+    "Dúvidas sobre matrícula": [
+        "matrícula", "como fazer matrícula", "processo de matrícula", "inscrição", "cadastro"
+    ],
+    "Dúvidas sobre cancelamento/reembolso": [
+        "reembolso", "devolução", "cancelamento", "cancelar", "como cancelar", "quero cancelar", "desistir"
+    ],
+    "Dúvidas sobre suporte técnico": [
+        "suporte", "suporte técnico", "ajuda técnica", "problema técnico", "assistência"
+    ],
     
-    # Problemas com Plataforma
+    # Problemas Técnicos (consolidadas)
     "Problema: site não abre": [
         "site não abre", "site não carrega", "site não funciona", "página não abre",
         "não consegue acessar o site", "site fora do ar", "site travou", "não consigo acessar a página",
@@ -170,13 +153,11 @@ TAG_KEYWORDS = {
         "link não funciona", "link quebrado", "link não abre", "link não carrega",
         "link não está funcionando", "link inválido"
     ],
-    "Problema: não conseguiu emitir boleto": [
-        "não conseguiu emitir boleto", "boleto não foi gerado", "erro ao gerar boleto",
-        "não consegue gerar boleto", "problema para emitir boleto"
-    ],
     "Problema: erro no pagamento": [
         "erro no pagamento", "pagamento não foi processado", "erro ao pagar",
-        "pagamento falhou", "erro na transação", "pagamento não foi aprovado"
+        "pagamento falhou", "erro na transação", "pagamento não foi aprovado",
+        "não conseguiu emitir boleto", "boleto não foi gerado", "erro ao gerar boleto",
+        "não consegue gerar boleto", "problema para emitir boleto"
     ],
     "Problema: erro no login": [
         "erro no login", "não consegue fazer login", "login não funciona",
@@ -186,69 +167,64 @@ TAG_KEYWORDS = {
         "não consegue acessar o curso", "erro no acesso ao curso", "curso não carrega",
         "não consegue entrar no curso", "erro ao acessar material"
     ],
-    "Problema: vídeo não carrega": [
-        "vídeo não carrega", "vídeo não funciona", "vídeo não abre",
-        "erro no vídeo", "vídeo travou", "vídeo não reproduz"
-    ],
-    "Problema: material não baixa": [
-        "material não baixa", "não consegue baixar", "download não funciona",
-        "erro ao baixar material", "arquivo não baixa"
+    "Problema: conteúdo não carrega": [
+        "vídeo não carrega", "vídeo não funciona", "vídeo não abre", "erro no vídeo", "vídeo travou", "vídeo não reproduz",
+        "material não baixa", "não consegue baixar", "download não funciona", "erro ao baixar material", "arquivo não baixa",
+        "certificado não gera", "certificado não carrega", "certificado não baixa"
     ],
     
-    # Insatisfação Específica
-    "Não gostou: conteúdo do curso": [
-        "não gostei do conteúdo", "não gostou do conteúdo", "conteúdo ruim",
-        "conteúdo não é bom", "conteúdo não agradou", "conteúdo não atendeu"
+    # Insatisfação (consolidadas)
+    "Não gostou: conteúdo/metodologia": [
+        "não gostei do conteúdo", "não gostou do conteúdo", "conteúdo ruim", "conteúdo não é bom", "conteúdo não agradou",
+        "não gostei da metodologia", "não gostou da metodologia", "metodologia ruim", "metodologia não funciona",
+        "não gostei do professor", "não gostou do professor", "professor ruim", "professor não explica bem",
+        "não gostei do material", "não gostou do material", "material ruim", "material não é bom"
     ],
-    "Não gostou: metodologia": [
-        "não gostei da metodologia", "não gostou da metodologia", "metodologia ruim",
-        "metodologia não funciona", "não gostei da didática", "não gostou da didática"
+    "Não gostou: plataforma/atendimento": [
+        "não gostei da plataforma", "não gostou da plataforma", "plataforma ruim", "plataforma não funciona bem",
+        "não gostei do site", "não gostou do site", "não gostei do atendimento", "não gostou do atendimento",
+        "atendimento ruim", "atendimento não é bom", "não gostei do suporte", "não gostou do suporte",
+        "qualidade ruim", "qualidade não é boa"
     ],
-    "Não gostou: professor": [
-        "não gostei do professor", "não gostou do professor", "professor ruim",
-        "professor não explica bem", "professor não é bom"
-    ],
-    "Não gostou: plataforma": [
-        "não gostei da plataforma", "não gostou da plataforma", "plataforma ruim",
-        "plataforma não funciona bem", "não gostei do site", "não gostou do site"
-    ],
-    "Não gostou: atendimento": [
-        "não gostei do atendimento", "não gostou do atendimento", "atendimento ruim",
-        "atendimento não é bom", "não gostei do suporte", "não gostou do suporte"
+    "Não gostou: preço/duração": [
+        "não gostei do preço", "não gostou do preço", "preço ruim", "preço caro", "preço alto",
+        "não gostei da duração", "não gostou da duração", "duração ruim", "duração longa", "duração curta"
     ],
     
-    # Insegurança Específica
+    # Insegurança (consolidadas)
     "Insegurança: não se sente preparado": [
         "não me sinto preparado", "não me sinto preparada", "não me sinto capaz",
-        "não tenho confiança", "não me sinto seguro", "não me sinto segura"
+        "não tenho confiança", "não me sinto seguro", "não me sinto segura", "falta de experiência"
     ],
-    "Insegurança: medo de errar": [
-        "tenho medo de errar", "medo de cometer erros", "tenho medo de falhar",
-        "não quero errar", "tenho receio de errar"
-    ],
-    "Insegurança: não confia na empresa": [
+    "Insegurança: medo/desconfiança": [
+        "tenho medo de errar", "medo de cometer erros", "tenho medo de falhar", "não quero errar", "tenho receio de errar",
         "não confio na empresa", "não confio na instituição", "não tenho confiança na empresa",
-        "tenho dúvidas sobre a empresa", "não sei se a empresa é boa"
+        "tenho dúvidas sobre a empresa", "não sei se a empresa é boa", "medo de ser enganado"
+    ],
+    "Insegurança: dúvidas sobre qualidade/valor": [
+        "dúvidas sobre qualidade", "não sei se vale a pena", "qualidade não é boa", "não sei se é bom"
     ],
     
-    # Atendimento
-    "Atendimento: não respondeu dúvida": [
+    # Atendimento (consolidadas)
+    "Atendimento: não respondeu/demorou": [
         "não respondeu minha dúvida", "minha dúvida não foi respondida", "não responderam minha pergunta",
-        "não recebi resposta", "não obtive resposta", "não foi respondido"
-    ],
-    "Atendimento: demorou para responder": [
+        "não recebi resposta", "não obtive resposta", "não foi respondido",
         "demorou para responder", "demorou muito para responder", "demora no atendimento",
         "atendimento demorado", "resposta demorou", "demorou para me atender"
     ],
     "Atendimento: resposta insatisfatória": [
         "resposta não foi satisfatória", "não ficou satisfeito com a resposta",
-        "resposta não resolveu", "não gostou da resposta", "resposta insatisfatória"
+        "resposta não resolveu", "não gostou da resposta", "resposta insatisfatória",
+        "não resolveu problema", "problema não foi resolvido"
+    ],
+    "Atendimento: não foi atendido": [
+        "não foi atendido", "transferiu várias vezes", "não conseguiu falar com ninguém"
     ]
 }
 
-# Prompt para Classificação com Tags Específicas
+# Prompt para Classificação com Tags Consolidadas
 CLASSIFICATION_PROMPT = """
-Analise a seguinte conversa de atendimento ao cliente e classifique-a usando uma das tags específicas abaixo:
+Analise a seguinte conversa de atendimento ao cliente e classifique-a usando uma das tags consolidadas abaixo:
 
 Tags disponíveis:
 {}
@@ -256,55 +232,77 @@ Tags disponíveis:
 Conversa para análise:
 {}
 
-IMPORTANTE: Use a tag MAIS ESPECÍFICA que se aplica ao contexto da conversa.
+IMPORTANTE: Use a tag MAIS APROPRIADA que se aplica ao contexto da conversa.
 
 Responda com TRÊS partes separadas por pipe (|):
-1. A tag específica
-2. Uma breve justificativa da classificação
-3. O MOTIVO COMPLEMENTAR, que adicione informações úteis SEM REPETIR a tag principal. Use apenas um termo curto e específico:
+1. A tag consolidada
+2. Uma justificativa abrangente e clara da classificação
+3. A CLASSIFICAÇÃO ESPECÍFICA, que deve ser clara e informativa sobre o que aconteceu na conversa:
 
-EXEMPLOS DE CLASSIFICAÇÃO ESPECÍFICA COMPLEMENTAR:
-
-PROBLEMAS FINANCEIROS:
-- "Problemas financeiros: sem dinheiro" → classificacao_especifica: "desempregado", "sem renda", "endividado"
-- "Problemas financeiros: dificuldade financeira" → classificacao_especifica: "sem condições", "endividado", "dificuldade"
-- "Problemas financeiros: não pode pagar agora" → classificacao_especifica: "momento difícil", "sem dinheiro agora", "não pode agora"
-- "Problemas financeiros: problemas com parcelamento" → classificacao_especifica: "não aceita parcelamento", "limite excedido"
+EXEMPLOS DE CLASSIFICAÇÃO ESPECÍFICA:
 
 DÚVIDAS:
-- "Dúvidas sobre meio de pagamento" → classificacao_especifica: "como pagar", "formas disponíveis", "opções"
-- "Dúvidas sobre boleto" → classificacao_especifica: "não recebeu", "vencido", "problema"
-- "Dúvidas sobre preço/valor" → classificacao_especifica: "quanto custa" (SEMPRE usar esta expressão)
-- "Dúvidas sobre certificado" → classificacao_especifica: "solicitou link", "não gera", "problema"
-- "Dúvidas sobre parcelamento" → classificacao_especifica: "parcelamento" (SEMPRE usar esta expressão)
-- "Dúvidas sobre acesso ao curso" → classificacao_especifica: "acesso curso" (SEMPRE usar esta expressão)
-- "Dúvidas sobre conteúdo do curso" → classificacao_especifica: "conteúdo curso" (SEMPRE usar esta expressão)
+- "Dúvidas sobre meio de pagamento" → classificacao_especifica: "Perguntou sobre formas de pagamento", "Perguntou sobre boleto", "Perguntou sobre PIX", "Perguntou sobre cartão", "Perguntou sobre parcelamento"
+- "Dúvidas sobre preço/valor" → classificacao_especifica: "Perguntou quanto custa", "Perguntou sobre o valor", "Perguntou sobre o preço"
+- "Dúvidas sobre desconto" → classificacao_especifica: "Perguntou sobre desconto", "Perguntou sobre promoção", "Perguntou sobre cupom"
+- "Dúvidas sobre curso" → classificacao_especifica: "Perguntou sobre acesso ao curso", "Perguntou sobre conteúdo do curso", "Perguntou sobre duração do curso", "Perguntou sobre horários"
+- "Dúvidas sobre certificado" → classificacao_especifica: "Perguntou sobre certificado", "Solicitou link do certificado", "Perguntou como gerar certificado"
+- "Dúvidas sobre matrícula" → classificacao_especifica: "Perguntou sobre matrícula", "Perguntou sobre inscrição", "Perguntou sobre cadastro"
+- "Dúvidas sobre cancelamento/reembolso" → classificacao_especifica: "Perguntou sobre cancelamento", "Perguntou sobre reembolso", "Quer cancelar o curso"
+- "Dúvidas sobre suporte técnico" → classificacao_especifica: "Perguntou sobre suporte", "Perguntou sobre ajuda técnica"
+
+PROBLEMAS FINANCEIROS:
+- "Problemas financeiros: sem dinheiro" → classificacao_especifica: "Está desempregado", "Sem renda", "Sem dinheiro para pagar", "Endividado"
+- "Problemas financeiros: dificuldade financeira" → classificacao_especifica: "Dificuldade financeira", "Sem condições econômicas", "Problemas financeiros"
+- "Problemas financeiros: não pode pagar agora" → classificacao_especifica: "Não pode pagar agora", "Momento difícil", "Sem dinheiro no momento"
+- "Problemas financeiros: problemas com parcelamento" → classificacao_especifica: "Problema com parcelamento", "Não aceita parcelamento", "Limite excedido"
+- "Problemas financeiros: outros" → classificacao_especifica: "Outro problema financeiro", "Questão financeira específica"
 
 PROBLEMAS TÉCNICOS:
-- "Problema: site não abre" → classificacao_especifica: "fora do ar", "não carrega", "erro"
-- "Problema: certificado não gera" → classificacao_especifica: "erro", "não gera", "problema"
-- "Problema: erro no pagamento" → classificacao_especifica: "falhou", "negado", "erro"
+- "Problema: site não abre" → classificacao_especifica: "Site fora do ar", "Site não carrega", "Página não abre"
+- "Problema: link não funciona" → classificacao_especifica: "Link quebrado", "Link não funciona", "Link inválido"
+- "Problema: erro no pagamento" → classificacao_especifica: "Erro no pagamento", "Pagamento falhou", "Boleto não foi gerado"
+- "Problema: erro no cadastro" → classificacao_especifica: "Erro no cadastro", "Problema para se cadastrar"
+- "Problema: erro no login" → classificacao_especifica: "Erro no login", "Não consegue fazer login", "Senha incorreta"
+- "Problema: erro no acesso ao curso" → classificacao_especifica: "Não consegue acessar o curso", "Erro no acesso ao curso"
+- "Problema: conteúdo não carrega" → classificacao_especifica: "Vídeo não carrega", "Material não baixa", "Certificado não gera", "Ebook não baixa"
+- "Problema: área do aluno não funciona" → classificacao_especifica: "Área do aluno não funciona", "Portal do aluno com problema"
+- "Problema: app não funciona" → classificacao_especifica: "App não funciona", "Aplicativo com problema"
+- "Problema: sistema lento" → classificacao_especifica: "Sistema lento", "Plataforma lenta"
+- "Problema: página travou" → classificacao_especifica: "Página travou", "Site travou"
 
 INSATISFAÇÃO:
-- "Não gostou: conteúdo do curso" → classificacao_especifica: "ruim", "não gostou", "insatisfeito"
-- "Não gostou: atendimento" → classificacao_especifica: "ruim", "não gostou", "insatisfeito"
+- "Não gostou: conteúdo/metodologia" → classificacao_especifica: "Não gostou do conteúdo", "Não gostou da metodologia", "Não gostou do professor", "Não gostou do material"
+- "Não gostou: plataforma/atendimento" → classificacao_especifica: "Não gostou da plataforma", "Não gostou do atendimento", "Não gostou da qualidade"
+- "Não gostou: preço/duração" → classificacao_especifica: "Não gostou do preço", "Não gostou da duração", "Preço caro", "Duração inadequada"
+
+INSEGURANÇA:
+- "Insegurança: não se sente preparado" → classificacao_especifica: "Não se sente preparado", "Falta de experiência", "Não se sente capaz"
+- "Insegurança: medo/desconfiança" → classificacao_especifica: "Medo de errar", "Não confia na empresa", "Medo de ser enganado"
+- "Insegurança: dúvidas sobre qualidade/valor" → classificacao_especifica: "Dúvidas sobre qualidade", "Não sabe se vale a pena"
 
 ATENDIMENTO:
-- "Atendimento: não respondeu dúvida" → classificacao_especifica: "sem resposta", "não respondeu", "ignorado"
-- "Atendimento: não resolveu problema" → classificacao_especifica: "não resolveu", "problema não resolvido", "insatisfeito"
+- "Atendimento: não respondeu/demorou" → classificacao_especifica: "Não respondeu dúvida", "Demorou para responder", "Sem resposta"
+- "Atendimento: resposta insatisfatória" → classificacao_especifica: "Resposta insatisfatória", "Não resolveu problema", "Problema não resolvido"
+- "Atendimento: não foi atendido" → classificacao_especifica: "Não foi atendido", "Transferiu várias vezes"
 
 OUTROS:
-- "Outros" → classificacao_especifica: "apenas conversou", "informações gerais", "sem problema específico"
+- "Outros" → classificacao_especifica: "Apenas conversou", "Informações gerais", "Agradecimento", "Cumprimento", "Sem problema específico"
 
 REGRAS IMPORTANTES:
-- NÃO repita palavras que já estão na tag principal
-- A classificação específica deve COMPLEMENTAR, não repetir
-- Use termos curtos e objetivos
+- A classificação específica deve ser CLARA e INFORMATIVA
+- Deve deixar óbvio o que aconteceu na conversa
+- EVITE redundância com a tag principal
+- Use linguagem simples e direta
 - Foque no que aconteceu especificamente
+- Seja abrangente na justificativa, mas específico na classificação
 
 Exemplo de resposta:
-- Outros|Cliente conversou sobre assuntos diversos|apenas conversou
-- Problemas financeiros: sem dinheiro|Cliente relatou está desempregado|desempregado
-- Dúvidas sobre certificado|Cliente solicitou link para certificado|solicitou link
-- Atendimento: não respondeu dúvida|Cliente não obteve resposta|sem resposta
+- Outros|Cliente conversou sobre assuntos diversos sem problema específico|apenas conversou
+- Problemas financeiros: sem dinheiro|Cliente relatou estar desempregado e sem condições de pagar|está desempregado
+- Dúvidas sobre certificado|Cliente perguntou sobre como obter o certificado do curso|perguntou sobre certificado
+- Problemas técnicos: conteúdo não carrega|Cliente não consegue baixar o Ebook do curso|Ebook não baixa
+- Não gostou: conteúdo/metodologia|Cliente expressou insatisfação com a qualidade do conteúdo|não gostou do conteúdo
+- Insegurança: não se sente preparado|Cliente demonstrou falta de confiança em suas capacidades|não se sente preparado
+- Atendimento: não respondeu/demorou|Cliente não obteve resposta para sua dúvida|não respondeu dúvida
 """ 
