@@ -1,0 +1,13 @@
+# Configurações do Banco de Dados
+DATABASE_URL=postgresql://usuario:senha@localhost:5432/nome_banco
+
+# Configurações da OpenAI
+OPENAI_API_KEY=sua_chave_api_aqui
+
+# Configurações de Log
+LOG_LEVEL=INFO
+
+# Configurações do Sistema
+BATCH_SIZE=10
+DELAY_SECONDS=1.0
+MAX_MESSAGES=20 

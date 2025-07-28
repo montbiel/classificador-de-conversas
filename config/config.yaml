@@ -1,0 +1,33 @@
+database:
+  host: 127.0.0.1
+  port: 5432
+  database: redfine_core
+  user: postgres
+  password: 12345678
+
+openai:
+  model: gpt-4o-mini
+  max_tokens: 150
+  temperature: 0.3
+  timeout: 30
+
+classifier:
+  batch_size: 10
+  delay_seconds: 1.0
+  max_messages: 20
+  retry_attempts: 3
+  retry_delay: 5
+
+logging:
+  level: INFO
+  file: logs/classifier.log
+  max_size: 10MB
+  backup_count: 5
+
+categories:
+  - "1. Suporte Técnico - Problemas com produtos/serviços"
+  - "2. Vendas - Interesse em compra"
+  - "3. Reclamação - Insatisfação com atendimento/produto"
+  - "4. Informação - Busca por informações gerais"
+  - "5. Elogio - Feedback positivo"
+  - "6. Outros - Não se encaixa nas categorias acima" 
