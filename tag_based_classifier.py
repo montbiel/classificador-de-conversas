@@ -56,7 +56,7 @@ class TagBasedClassifier:
             
             # Prompt específico para gerar sugestões de melhoria
             improvement_prompt = f"""
-Você é um especialista em análise de atendimento ao cliente. Analise a conversa abaixo e forneça até 5 sugestões específicas e acionáveis para melhorar o prompt de uma IA de atendimento.
+Você é um especialista em atendimento ao cliente e marketing digital para lançamento de cursos. Analise a conversa abaixo e forneça até 5 sugestões específicas e acionáveis para melhorar o prompt de uma IA que é tanto ATENDENTE quanto MOTIVADORA para continuidade no minicurso.
 
 CONTEXTO:
 - Classificação da conversa: {classification}
@@ -67,25 +67,48 @@ CONTEXTO:
 CONVERSA:
 {formatted_messages}
 
-INSTRUÇÕES:
-1. Analise como a IA poderia ter melhorado o atendimento
-2. Foque em sugestões específicas que podem ser implementadas no prompt da IA
-3. Considere: clareza, completude, proatividade, personalização, resolução
-4. Seja específico sobre o que deveria ser incluído ou melhorado
-5. Limite a 5 sugestões mais importantes
-6. Use formato de tópicos com "•" no início
+INSTRUÇÕES DUAL (ATENDIMENTO + MOTIVAÇÃO):
+1. Analise como a IA poderia ter melhorado tanto o ATENDIMENTO quanto a MOTIVAÇÃO
+2. A IA deve resolver dúvidas/objeções E simultaneamente motivar a continuidade no minicurso
+3. Considere: clareza, completude, proatividade, personalização, resolução + urgência, benefícios emocionais, gatilhos de curiosidade
+4. Identifique oportunidades perdidas de resolver problemas E plantar sementes motivacionais
+5. Sugira formas de transformar cada interação em uma ponte para o próximo conteúdo
+6. Foque em manter o usuário satisfeito E engajado simultaneamente
+
+ASPECTOS ESPECÍFICOS A ANALISAR:
+
+ATENDIMENTO EFICIENTE:
+• Como resolver dúvidas de forma clara e completa
+• Como ser proativa em antecipar necessidades
+• Como personalizar respostas baseado no contexto
+• Como demonstrar conhecimento e autoridade
+• Como criar confiança e credibilidade
+
+MOTIVAÇÃO PARA CONTINUIDADE:
+• Como "plantar sementes" sutilmente em cada resposta
+• Como criar curiosidade sobre próximas aulas
+• Como transformar objeções em benefícios do curso
+• Como usar storytelling para conectar emocionalmente
+• Como criar urgência sem ser agressivo
+• Como usar prova social e autoridade
+
+EQUILÍBRIO PERFEITO:
+• Como resolver o problema atual E motivar para o próximo passo
+• Como ser útil sem perder o foco na conversão
+• Como criar pontes naturais entre atendimento e motivação
+• Como manter o usuário satisfeito E curioso simultaneamente
 
 FORMATO DE RESPOSTA:
-• [Sugestão específica e acionável]
+• [Sugestão específica que equilibra atendimento eficiente + motivação para continuidade]
 
-Se a conversa estiver bem conduzida, responda apenas: "Conversa bem conduzida - manter padrão atual"
+Se a conversa estiver bem conduzida em ambos os aspectos, responda apenas: "Conversa bem conduzida - atendimento eficiente e motivação adequada"
 """
             
             # Fazer chamada para OpenAI
             response = await self.client.chat.completions.create(
                 model=OPENAI_MODEL,
                 messages=[
-                    {"role": "system", "content": "Você é um especialista em análise de atendimento ao cliente e melhoria de prompts de IA."},
+                    {"role": "system", "content": "Você é um especialista em atendimento ao cliente e marketing digital para lançamento de cursos. Você entende como equilibrar atendimento eficiente com estratégias de motivação e engajamento, criando uma experiência que resolve problemas E motiva a continuidade no minicurso."},
                     {"role": "user", "content": improvement_prompt}
                 ],
                 max_tokens=300,
